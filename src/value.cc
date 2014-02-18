@@ -211,8 +211,12 @@ public:
 #else
     // attempt to emulate Qt's QString.sprintf("%g"); from old OpenSCAD.
     // see https://github.com/openscad/openscad/issues/158
+    if (op1 == 1) {
+      return "1"; // shorthand
+    }
     std::stringstream tmp;
     tmp.unsetf(std::ios::floatfield);
+    tmp.precision(17);
     tmp << op1;
     return tmp.str();
 #endif
